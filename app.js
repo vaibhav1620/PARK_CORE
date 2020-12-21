@@ -38,6 +38,12 @@ app.get('/parks', async function(req,res){
     res.render('parks/index.ejs',{parks})
 })
 
+app.get('/parks/:id', async function(req,res){
+    const id = req.params.id;
+    const parks = await parkModel.find({});
+    res.render('parks/show.ejs')
+})
+
 app.listen(9000,()=>{
     console.log("SERVING ON PORT 9000");
 })

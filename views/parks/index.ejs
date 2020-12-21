@@ -8,7 +8,7 @@
         <h1>ALL PARKS</h1>
         <ul>
             <% for(var park of parks){ %>
-                <li><%= park.title %> - <%= park.location %></li>
+                <li><a href="/parks/id"><%= park.title %> - <%= park.location %></a></li>
             <% } %>
         </ul>
     </body>
