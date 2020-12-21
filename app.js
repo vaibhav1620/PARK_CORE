@@ -33,6 +33,10 @@ app.get('/makepark', async function(req,res){
     res.send(park);
 })
 
+app.get('/parks', async function(req,res){
+    const parks = await parkModel.find({});
+    res.render('parks/index.ejs',{parks})
+})
 
 app.listen(9000,()=>{
     console.log("SERVING ON PORT 9000");
