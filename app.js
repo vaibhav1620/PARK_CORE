@@ -41,7 +41,7 @@ app.get('/parks', async function(req,res){
 app.get('/parks/:id', async function(req,res){
     const id = req.params.id;
     const park = await parkModel.findById(id);
-    res.render('parks/show.ejs',{park})
+    res.render('parks/show.ejs',{ park })
 })
 
 app.listen(9000,()=>{
