@@ -51,6 +51,12 @@ app.get('/parks/:id', async function(req,res){
     res.render('parks/show.ejs',{ park });
 })
 
+app.get('/parks/:id/edit', async function(req,res){
+    const id = req.params.id;
+    const park = await parkModel.findById(id);
+    res.render('parks/edit.ejs',{ park });
+})
+
 app.post('/parks',async function(req,res){
     const new_park =  new parkModel(req.body.park);
     await new_park.save();
