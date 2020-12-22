@@ -16,6 +16,8 @@ db.once("open", ()=> {
     console.log("Database connection open");
 });
 
+app.use(express.urlencoded({extended: true}));
+
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -39,10 +41,20 @@ app.get('/parks', async function(req,res){
     res.render('parks/index.ejs',{parks})
 })
 
+app.get('/parks/new', function(req,res){
+    res.render('parks/new.ejs')
+})
+
 app.get('/parks/:id', async function(req,res){
     const id = req.params.id;
     const park = await parkModel.findById(id);
     res.render('parks/show.ejs',{ park });
+})
+
+app.post('/parks',async function(req,res){
+    const new_park =  new parkModel(req.body.park);
+    await new_park.save();
+    res.redirect('/parks/'+new_park._id);
 })
 
 app.listen(9000,()=>{
