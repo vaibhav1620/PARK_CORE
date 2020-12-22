@@ -40,8 +40,8 @@ app.get('/parks', async function(req,res){
 
 app.get('/parks/:id', async function(req,res){
     const id = req.params.id;
-    const parks = await parkModel.find({});
-    res.render('parks/show.ejs')
+    const park = await parkModel.findById(id);
+    res.render('parks/show.ejs',{park})
 })
 
 app.listen(9000,()=>{
