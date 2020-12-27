@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const morgan = require("morgan");
 const methodOverride = require('method-override');
 const path = require('path');
 const parkModel = require('./models/parks');
@@ -17,6 +18,7 @@ db.once("open", ()=> {
     console.log("Database connection open");
 });
 
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
