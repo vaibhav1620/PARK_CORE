@@ -2,9 +2,23 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>New Park</title>
     </head>
     <body>
-
+        <h1>Edit Parks</h1>
+        <form class="" action="/parks" method="POST">
+            <div class="">
+                <label for="title"> TITLE: </label>
+                <input type="text" id="title" name="park[title]" value="<%= park.title %>">
+            </div>
+            <div class="">
+                <label for="location"> LOCATION: </label>
+                <input type="text" id="location" name="park[location]" value="<%= park.location %>">
+            </div>
+            <button>Add Park</button>
+        </form>
+        <footer>
+            <a href="/parks/<%= park._id %>">back to park</a>
+        </footer>
     </body>
 </html>
