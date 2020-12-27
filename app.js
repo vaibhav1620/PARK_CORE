@@ -70,6 +70,12 @@ app.put('/parks/:id',async function(req,res){
     res.redirect('/parks/'+edit_park._id);
 })
 
+app.delete('/parks/:id', async function(req ,res){
+    const id = req.params.id;
+    await parkModel.findByIdAndDelete(id);
+    res.redirect('/parks');
+})
+
 app.listen(9000,()=>{
     console.log("SERVING ON PORT 9000");
 })
