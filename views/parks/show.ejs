@@ -8,6 +8,9 @@
         <h1>HI WELCOME TO YOUR PARK</h1>
         <h2><%=park.location%></h2>
         <h3><%=park.title%></h3>
+    <form action="/parks/<%= park._id %>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
     <footer>
         <a href="/parks/<%= park._id %>/edit">EDIT PARK DETAILS</a>
         <a href="/parks">ALL PARKS</a>
