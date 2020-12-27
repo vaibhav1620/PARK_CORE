@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const methodOverride = require('method-override');
 const path = require('path');
 const parkModel = require('./models/parks');
 
@@ -17,6 +18,7 @@ db.once("open", ()=> {
 });
 
 app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -37,7 +39,6 @@ app.get('/makepark', async function(req,res){
 
 app.get('/parks', async function(req,res){
     const parks = await parkModel.find({});
-    console.log(parks);
     res.render('parks/index.ejs',{parks})
 })
 
@@ -61,6 +62,12 @@ app.post('/parks',async function(req,res){
     const new_park =  new parkModel(req.body.park);
     await new_park.save();
     res.redirect('/parks/'+new_park._id);
+})
+
+app.put('/parks/:id',async function(req,res){
+    const id = req.params.id;
+    edit_park = await parkModel.findByIdAndUpdate(id,{title: req.body.park.title, location: req.body.park.location});
+    res.redirect('/parks/'+edit_park._id);
 })
 
 app.listen(9000,()=>{

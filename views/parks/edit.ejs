@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Edit Parks</h1>
-        <form class="" action="/parks" method="POST">
+        <form class="" action="/parks/<%= park._id %>?_method=PUT" method="POST">
             <div class="">
                 <label for="title"> TITLE: </label>
                 <input type="text" id="title" name="park[title]" value="<%= park.title %>">
