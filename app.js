@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const ejsMate = require('ejs-mate');
 const morgan = require("morgan");
 const methodOverride = require('method-override');
 const path = require('path');
@@ -21,6 +22,7 @@ db.once("open", ()=> {
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.engine('ejs',ejsMate);
 
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views'));
